@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  wiki:
+    build:
+      dockerfile: Dockerfile
+#    image: ghcr.io/requarks/wiki:2.5
+    environment:
+      DB_TYPE: postgres
+      DB_HOST: '${PGHOST}'
+      DB_PORT: '${PGPORT}'
+      DB_USER: '${PGUSER}'
+      DB_NAME: '${PGDATABASE}'
+      DB_PASS: '${PGPASSWORD}'
+      DB_SSL: 1
+      DB_SSL_ROOT_CA_LINK: https://truststore.pki.rds.amazonaws.com/sa-east-1/sa-east-1-bundle.pem
+    ports:
+      - "80:3000"
